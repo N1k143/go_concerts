@@ -26,17 +26,17 @@ func main() {
 	log.Println("Connected to database")
 
 	// Repositories
-	concertRepo     := repository.NewConcertRepo(db)
-	seatingRepo     := repository.NewSeatingRepo(db)
+	concertRepo := repository.NewConcertRepo(db)
+	seatingRepo := repository.NewSeatingRepo(db)
 	reservationRepo := repository.NewReservationRepo(db)
-	bookingRepo     := repository.NewBookingRepo(db)
+	bookingRepo := repository.NewBookingRepo(db)
 
 	// Handlers
-	concertH     := handlers.NewConcertHandler(concertRepo)
-	seatingH     := handlers.NewSeatingHandler(concertRepo, seatingRepo)
+	concertH := handlers.NewConcertHandler(concertRepo)
+	seatingH := handlers.NewSeatingHandler(concertRepo, seatingRepo)
 	reservationH := handlers.NewReservationHandler(concertRepo, seatingRepo, reservationRepo)
-	bookingH     := handlers.NewBookingHandler(concertRepo, seatingRepo, reservationRepo, bookingRepo)
-	ticketH      := handlers.NewTicketHandler(bookingRepo, seatingRepo)
+	bookingH := handlers.NewBookingHandler(concertRepo, seatingRepo, reservationRepo, bookingRepo)
+	ticketH := handlers.NewTicketHandler(bookingRepo, seatingRepo)
 
 	// Router
 	r := chi.NewRouter()
